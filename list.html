@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仕事・サービス一覧 | TOMOKI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bk:#080808;--wh:#f7f7f5;--gl:#e4e4e0;--gd:#484844;--gm:#aaaaaa;--ac:#c8a882}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bk);color:var(--wh);line-height:1.8;font-weight:300;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:rgba(8,8,8,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:.22em;color:var(--wh)}
+.nav-back{font-size:.62rem;letter-spacing:.2em;color:rgba(255,255,255,.4)}
+
+/* page wrapper */
+.page{max-width:720px;margin:0 auto;padding:6rem 1.4rem 4rem}
+
+/* title */
+.page-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,2.8rem);font-weight:300;letter-spacing:-.01em;margin-bottom:.6rem;color:var(--wh)}
+.page-hint{font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-bottom:2.4rem;display:flex;align-items:center;gap:.5rem}
+.page-hint::before{content:'▶';font-size:.55rem;color:var(--ac)}
+
+/* section label */
+.sec-label{font-size:.7rem;letter-spacing:.38em;color:rgba(255,255,255,.3);padding:.6rem 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin:1.6rem 0 .4rem}
+
+/* accordion */
+.acc-item{border-bottom:1px solid rgba(255,255,255,.07)}
+.acc-trigger{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.7rem;padding:.95rem 0;text-align:left;color:var(--wh);font-family:'Noto Sans JP',sans-serif;font-size:.92rem;font-weight:400;letter-spacing:.05em}
+.acc-trigger:hover{color:var(--ac)}
+.acc-arrow{width:18px;height:18px;border:1.5px solid rgba(255,255,255,.35);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s}
+.acc-arrow svg{width:7px;height:7px;fill:rgba(255,255,255,.6);transition:transform .28s cubic-bezier(.4,0,.2,1),fill .2s}
+.acc-trigger:hover .acc-arrow{border-color:var(--ac)}
+.acc-trigger:hover .acc-arrow svg{fill:var(--ac)}
+.acc-trigger[aria-expanded="true"] .acc-arrow{border-color:var(--ac);background:rgba(200,168,130,.12)}
+.acc-trigger[aria-expanded="true"] .acc-arrow svg{transform:rotate(90deg);fill:var(--ac)}
+
+.acc-body{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.acc-body.open{max-height:3000px}
+.acc-inner{padding:.2rem 0 1.4rem 1.7rem}
+.acc-inner p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:2;margin-bottom:.9rem}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner h4{font-size:.72rem;letter-spacing:.18em;color:rgba(255,255,255,.35);margin:1.2rem 0 .4rem;font-weight:400}
+.acc-inner ul{list-style:none;margin-bottom:.9rem}
+.acc-inner ul li{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.9;padding-left:1.1rem;position:relative;margin-bottom:.2rem}
+.acc-inner ul li::before{content:'–';position:absolute;left:0;color:var(--ac)}
+.acc-inner strong{color:rgba(255,255,255,.82);font-weight:400}
+.acc-inner .price-block{margin-top:1.2rem;padding:.9rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.acc-inner .price-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--wh);display:block;margin-bottom:.2rem}
+.acc-inner .price-note{font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:.08em;line-height:1.7}
+.acc-inner .tag-rec{display:inline-block;font-size:.55rem;letter-spacing:.2em;color:var(--ac);border:1px solid rgba(200,168,130,.4);padding:.2rem .7rem;margin-bottom:.8rem}
+
+/* contact */
+.contact-block{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}
+.contact-block p{font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:1.2rem;letter-spacing:.08em}
+.contact-btns{display:flex;flex-direction:column;gap:.8rem;align-items:center}
+.btn-mail{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;border:1px solid rgba(255,255,255,.3);color:var(--wh);font-size:.72rem;letter-spacing:.14em;width:100%;max-width:320px;justify-content:center}
+.btn-insta{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-size:.68rem;letter-spacing:.18em;width:100%;max-width:320px;justify-content:center}
+
+footer{padding:1.5rem 1.4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.22em;color:rgba(255,255,255,.25)}
+.f-copy{font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.15)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">TOMOKI</a>
+  <span class="nav-back">← サービス一覧</span>
+</nav>
+
+<div class="page">
+
+  <h1 class="page-ttl">仕事・サービス一覧</h1>
+  <p class="page-hint">をタップすると、詳しい内容が開きます。</p>
+
+  <!-- 自己紹介 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      自己紹介
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>はじめまして、久世智貴です。富山を拠点に、Web制作・Instagram運用サポート・企業の広告画像制作、そしてCanvaやAffinityといったデザインツールの使い方やデザインの基礎支援まで、幅広く対応しています。近年はAI画像生成やAIエージェントといった新しい技術も、日々の実務に取り入れています。</p>
+        <p>経歴は少し異色です。もともとは介護士として働いていました。「デジタルスキルで仕事の幅を広げたい」——その思いからリスキリングを始め、2年前に独立。未経験からゼロで築いた基礎は、今、確かな土台になっています。</p>
+        <p>AIの進化により、かつて専門職の領域だったスキルも、誰でも扱える時代になりました。だからこそ大切なのは、「何を作れるか」ではなく、「何を、誰に、どう届けるか」。見せ方ひとつで、お店や人の印象は大きく変わります。</p>
+        <p>お店の魅力をもっと届けたい方、発信の軸を整えたい方、パソコンの基礎から始めたい方、デザインやさまざまなツールの使い方を学びたい方、AIを仕事に活かしたい方、そして、AI時代のデザインを一緒に考えたい方。ぜひお気軽にご相談ください。</p>
+        <p>また、1年半ほど前からピックルボール探究家としても活動中です。仕事の話だけでなく、そんな話もできたら嬉しいです。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">【サービス一覧】</div>
+
+  <!-- インスタ初期設計 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      インスタ初期設計・運用サポート
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>これからインスタをはじめたい人。<br>もうやってるけど、なかなか伸びなくてモヤモヤしている人。</p>
+        <p>そんな方に、いちばん最初の設計を一緒に考えるコンサルです。<br>インスタって、だれでもすぐにはじめられますよね。</p>
+        <p>スマホひとつあれば、今日から発信できる。<br>手軽だからこそ、「伸びない」で止まってしまう人もすごく多いんです。</p>
+        <p>おもしろいのは ─<br>リアルの世界でどれだけ有名でも、力のある人でも、インスタの世界に入ると、ぜんぜん見てもらえないことがあります。</p>
+        <p>反対に、インスタのしくみをちゃんと理解して発信するだけで、思っていた以上にフォロワーが増えたり、お客さんが集まったり、その人そのもののイメージをぐっと引き上げてくれたりします。</p>
+        <p>だから、最初の設計がすごく大切。</p>
+        <ul>
+          <li>どんな世界観で発信したいか</li>
+          <li>どんなテーマを軸に置くか</li>
+          <li>どんなデザインで見せていくか</li>
+        </ul>
+        <p>このあたりを、じっくりヒアリングします。</p>
+        <p>最終的には、自分ひとりで続けられる状態を目指します。<br>「時間がまったく取れない」「投稿を作るのはむずかしい」そんな方には、投稿制作そのものをお手伝いすることもできます。</p>
+        <h4>こんな方におすすめ</h4>
+        <p>インスタグラムで集客や、自分のブランドづくりを考えている方。</p>
+        <div class="price-block">
+          <span class="price-num">月額 ¥33,000〜</span>
+          <span class="price-note">（税込）詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Webサイト制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      Webサイト（ホームページ）制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>インターネット上でしっかり伝わるWebサイトを作ります。</p>
+        <h4>こんなサイトが作れます</h4>
+        <ul>
+          <li><strong>作品集・自己紹介（ポートフォリオ）：</strong>自分の特技や、これまでの実績をまとめるサイト</li>
+          <li><strong>宣伝用特設ページ（LP）：</strong>売り出したいサービスやイベントを、1つのページで魅力的にアピールするサイト</li>
+          <li><strong>お店や会社の公式ホームページ：</strong>お店の情報などを載せる、しっかりとしたサイト</li>
+        </ul>
+        <h4>嬉しい基本セット</h4>
+        <ul>
+          <li><strong>スマホ対応：</strong>スマホから見ても、文字や写真が綺麗に表示されるように作ります。</li>
+          <li><strong>検索対策（SEO）：</strong>Googleなどで検索されたときに、見つけてもらいやすくする裏側の設定も行います。</li>
+          <li><strong>更新レクチャーつき：</strong>完成したあと、お知らせなどを「自分で書き換える方法」を丁寧にお教えします！</li>
+        </ul>
+        <h4>こんな人におすすめです！</h4>
+        <ul>
+          <li>24時間いつでも働いてくれる、ネット上の「名刺」が欲しい</li>
+          <li>公式のサイトを作って、お客さんに「ちゃんとしたお店・人だな」と安心してもらいたい</li>
+          <li>自分のやっているサービスを、もっとたくさんの人に知ってほしい</li>
+        </ul>
+        <div class="price-block">
+          <span class="price-num">¥55,000〜</span>
+          <span class="price-note">（税込）制作費　詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- デザインスキル基礎レッスン -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      デザインスキル基礎レッスン
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Canvaなどを使ってみたけれど、素人っぽさが抜けずにモヤモヤしている方。そんな方に向けた、デザインの「基礎」からしっかり学べる伴走型のレッスンです。</p>
+        <p>今は便利なツールがたくさんあり、誰でもカンタンにきれいなテンプレートが使える時代ですよね。手軽だからこそ、「自分流」でやってみて「なんだか違う」と手が止まってしまう人もすごく多いんです。</p>
+        <p>おもしろいのは ─<br>デザインは「生まれつきのセンス」だと思われがちですが、実は違います。情報の優先順位や、文字の揃え方など、ちょっとした「基本ルール」を知るだけで、見違えるようにプロっぽく、説得力のある見え方に変わるんです。</p>
+        <p>私自身、デザインを本格的に始めてからの歴はまだ2年ほど。だからこそ、「デザインが苦手」という方のつまずきやすいポイントが痛いほどわかります。</p>
+        <h4>レッスンの内容</h4>
+        <ul>
+          <li>Canvaの基礎から応用まで（ご希望の方には、より高度なツール「Affinity」もレクチャー可能です）</li>
+          <li>SNS投稿、チラシ、名刺、プレゼン資料などの実践的なデザイン制作</li>
+          <li>周りを気にせず質問できる、マンツーマンのオンラインレッスン</li>
+          <li>ご自身で制作したデザインの丁寧な添削（フィードバック）</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>毎回デザインを外注するのではなく、自分の力で納得のいくデザインを作れるようになりたい方。</p>
+        <div class="price-block">
+          <span class="price-num">3回券 ¥36,000 / 5回券 ¥55,000</span>
+          <span class="price-note">（税込）1回あたり2時間程を想定　詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- リスキリングサポート -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      リスキリング サポート
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>デジタルスキル習得を伴走支援します。副業・転職・フリーランスを目指す方向けのサポートです。</p>
+        <ul>
+          <li>目標設定・学習ロードマップ作成</li>
+          <li>おすすめ学習教材・コースのご紹介</li>
+          <li>週次の進捗チェックイン</li>
+          <li>ポートフォリオ・実績作りのアドバイス</li>
+          <li>対象スキル：デザイン、SNS運用、Notion活用など</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>新しいスキルを身につけて収入の柱を増やしたい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- バナー制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      バナー制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>SNSやWebサイト用のバナー・アイキャッチ画像を制作します。</p>
+        <ul>
+          <li>Instagram・Twitter・YouTube用サムネイル</li>
+          <li>ブログ記事のアイキャッチ</li>
+          <li>Web広告用バナー</li>
+          <li>CanvaやAdobe Expressを活用したスピード納品</li>
+          <li>修正対応あり</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>クリック率を上げたい方、目を引くビジュアルが欲しい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- チラシ・名刺制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      チラシ・名刺制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>イベント告知・サービス案内・地域配布用のチラシを制作します。</p>
+        <ul>
+          <li>A4・A5・B5など各サイズ対応</li>
+          <li>印刷用データ（高解像度PDF）の納品</li>
+          <li>SNS投稿用のデジタル版も対応</li>
+          <li>文章のライティングサポートつき</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>イベントを開催する方、地域でサービスを広めたい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ピックルボールレッスン -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      ピックルボールレッスン
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>不定期開催になります。</p>
+        <p>詳細はInstagramまたはメールでお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ピックルボール動画添削 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      ピックルボール動画添削
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>ピックルボールのプレー動画を送っていただき、フィードバックをお届けします。</p>
+        <ul>
+          <li>スマホで撮影した動画でOK</li>
+          <li>フォーム・ポジショニング・戦術を分析</li>
+          <li>コメント付き動画または文章でフィードバック</li>
+          <li>オンラインで完結（全国対応）</li>
+          <li>定期プランで継続的な上達をサポート</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>コーチに習えない環境でも上達したい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 日記 × AI 資産構築 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      日記 × AI 資産構築
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>毎日の日記をAIを活用して資産に変えるサポートをします。</p>
+        <ul>
+          <li>Notionを使った日記テンプレートの設計</li>
+          <li>AIで日記から気づき・アイデアを抽出する仕組み</li>
+          <li>ブログ・SNS投稿コンテンツへの転換方法</li>
+          <li>「書けない」を解決するプロンプト設計</li>
+          <li>日記を続けながら発信力を高める習慣化サポート</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>日々の経験を発信・収益につなげたい方、アウトプットが苦手な方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-block">
+    <p>お問い合わせ・ご相談はお気軽にどうぞ！<br>各サービスのご質問、組み合わせのご相談など、まずはお話しましょう。</p>
+    <div class="contact-btns">
+      <a class="btn-mail" href="mailto:vitalitywork07@gmail.com">✉ vitalitywork07@gmail.com</a>
+      <a class="btn-insta" href="https://www.instagram.com/tomo.pickleball/" target="_blank" rel="noopener">✦ Instagram @tomo.pickleball</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="f-logo">TOMOKI</span>
+  <span class="f-copy">© 2026 Tomoki. All rights reserved.</span>
+</footer>
+
+<script>
+function toggleAcc(btn) {
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!isOpen));
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
