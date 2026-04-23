@@ -1,136 +1,349 @@
 <!DOCTYPE html>
-<html lang="ja"><head>
+<html lang="ja">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>&#12392;&#12418;&#12365; | Creative Partner &amp; AI Mentor</title>
+<title>仕事・サービス一覧 | TOMOKI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bk:#080808;--wh:#f7f7f5;--gl:#e4e4e0;--gd:#484844;--gm:#aaaaaa;--ac:#c8a882}
-body{font-family:'Noto Sans JP',sans-serif;background:var(--wh);color:var(--bk);line-height:1.8;font-weight:300;overflow-x:hidden}
-a{text-decoration:none}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:rgba(247,247,245,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--gl)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:.22em;color:var(--bk)}
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem 1.4rem 3rem;background:var(--wh)}
-.hero-eye{font-size:.62rem;letter-spacing:.38em;color:var(--gm);margin-bottom:1.6rem}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4.5rem,22vw,8rem);font-weight:300;line-height:1;letter-spacing:-.02em;margin-bottom:1.2rem}
-.hero-name em{font-style:italic;color:var(--gd)}
-.hero-tag{font-size:.82rem;color:var(--gd);margin-bottom:2rem;line-height:1.9}
-.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;padding:.9rem 2rem;background:var(--bk);color:var(--wh);font-size:.68rem;font-weight:300;letter-spacing:.2em}
-.btn-o{display:inline-flex;align-items:center;padding:.9rem 2rem;border:1px solid var(--bk);color:var(--bk);font-size:.68rem;font-weight:300;letter-spacing:.2em}
-section{padding:4rem 1.4rem}
-.lbl{font-size:.6rem;letter-spacing:.42em;color:var(--gm);display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
-.lbl::before{content:'';display:block;width:24px;height:1px;background:currentColor}
-.ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,9vw,3rem);font-weight:300;line-height:1.15;letter-spacing:-.01em;margin-bottom:1.6rem}
-.ttl-sub{font-size:.7em;font-weight:300;letter-spacing:.04em;color:rgba(255,255,255,.55)}
-#about p{font-size:.85rem;color:var(--gd);line-height:2;margin-bottom:1rem}
-#about a{color:var(--bk);border-bottom:1px solid var(--gm)}
-#flagship{background:var(--bk);padding:4rem 1.4rem}
-#flagship .lbl{color:rgba(255,255,255,.3)}
-#flagship .ttl{color:var(--wh)}
-.flag-badge{display:inline-block;font-size:.55rem;letter-spacing:.25em;color:var(--ac);border:1px solid var(--ac);padding:.25rem .8rem;margin-bottom:1rem}
-.flag-sub{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:1.8rem;line-height:2}
-.flag-body{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:1.6rem 1.4rem;margin-bottom:1.8rem}
-.flag-item{font-size:.78rem;color:rgba(255,255,255,.6);line-height:2;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.flag-item:last-child{border-bottom:none}
-.flag-item strong{color:rgba(255,255,255,.85);font-weight:400}
-.flag-feat{margin-top:1.4rem}
-.flag-feat-ttl{font-size:.62rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:.8rem}
-.flag-feat-item{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.9;padding-left:1.2rem;position:relative;margin-bottom:.4rem}
-.flag-feat-item::before{content:'- ';position:absolute;left:0;color:var(--ac)}
-.flag-price-area{display:flex;align-items:baseline;gap:.6rem;margin-top:1.6rem;flex-wrap:wrap}
-.flag-price{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--wh)}
-.flag-price-sub{font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:.1em}
-#services{background:var(--bk);padding:4rem 1.4rem}
-#services .lbl{color:rgba(255,255,255,.3)}
-#services .ttl{color:var(--wh)}
-.svc-note{font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:2rem;line-height:1.9}
-.svc-grid{display:grid;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07)}
-.svc-card{background:var(--bk);padding:1.8rem 1.4rem;position:relative;overflow:hidden}
-.svc-tag{font-size:.55rem;letter-spacing:.2em;padding:.2rem .6rem;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.35);display:inline-block;margin-bottom:.6rem}
-.svc-ttl{font-family:'Noto Sans JP',sans-serif;font-size:.9rem;font-weight:400;color:var(--wh);margin-bottom:.5rem;letter-spacing:.06em}
-.svc-desc{font-size:.68rem;color:rgba(255,255,255,.38);line-height:1.9;margin-bottom:1rem}
-.svc-price{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:rgba(255,255,255,.82)}
-.svc-sub{font-size:.6rem;color:rgba(255,255,255,.28);letter-spacing:.08em;margin-top:.15rem}
-.svc-num{position:absolute;top:.6rem;right:1rem;font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:rgba(255,255,255,.04);line-height:1}
-#contact{background:var(--bk);text-align:center;padding:5rem 1.4rem}
-#contact .lbl{justify-content:center;color:rgba(255,255,255,.28)}
-#contact .ttl{color:var(--wh);text-align:center}
-.con-sub{font-size:.75rem;color:rgba(255,255,255,.36);margin-bottom:2.5rem;letter-spacing:.1em;line-height:1.9}
-.con-btns{display:flex;flex-direction:column;gap:1rem;align-items:center}
-.con-mail{display:inline-flex;align-items:center;gap:.6rem;padding:1.1rem 2rem;border:1px solid rgba(255,255,255,.35);color:var(--wh);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.12em;width:100%;max-width:340px;justify-content:center}
-.con-insta{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.68rem;letter-spacing:.18em;width:100%;max-width:340px;justify-content:center}
-.con-note{font-size:.7rem;color:rgba(255,255,255,.28);margin-top:1.5rem;letter-spacing:.08em}
-.con-note a{color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.2)}
-footer{background:#040404;padding:1.5rem 1.4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:.5rem}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bk);color:var(--wh);line-height:1.8;font-weight:300;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:center;align-items:center;padding:1rem 1.4rem;background:rgba(8,8,8,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:.22em;color:var(--wh)}
+
+/* page wrapper */
+.page{max-width:720px;margin:0 auto;padding:5rem 1.4rem 4rem}
+
+/* hero header */
+.hero-block{padding:3.5rem 0 2.8rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:.4rem}
+.hero-eye{font-size:.58rem;letter-spacing:.42em;color:rgba(255,255,255,.28);margin-bottom:1.4rem}
+.hero-catch{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,6.5vw,2.6rem);font-weight:300;line-height:1.25;letter-spacing:.01em;color:var(--wh);margin-bottom:1.1rem}
+.hero-catch em{font-style:italic;color:var(--ac)}
+.hero-sub{font-size:.78rem;color:rgba(255,255,255,.38);line-height:2;letter-spacing:.06em}
+.hero-hint{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;color:rgba(255,255,255,.25);letter-spacing:.1em;margin-top:1.6rem}
+.hero-hint::before{content:'▶';font-size:.5rem;color:var(--ac)}
+
+/* section label */
+.sec-label{font-size:.7rem;letter-spacing:.38em;color:rgba(255,255,255,.3);padding:.6rem 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin:1.6rem 0 .4rem}
+
+/* accordion */
+.acc-item{border-bottom:1px solid rgba(255,255,255,.07)}
+.acc-trigger{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.7rem;padding:.95rem 0;text-align:left;color:var(--wh);font-family:'Noto Sans JP',sans-serif;font-size:.92rem;font-weight:400;letter-spacing:.05em}
+.acc-trigger:hover{color:var(--ac)}
+.acc-arrow{width:18px;height:18px;border:1.5px solid rgba(255,255,255,.35);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s}
+.acc-arrow svg{width:7px;height:7px;fill:rgba(255,255,255,.6);transition:transform .28s cubic-bezier(.4,0,.2,1),fill .2s}
+.acc-trigger:hover .acc-arrow{border-color:var(--ac)}
+.acc-trigger:hover .acc-arrow svg{fill:var(--ac)}
+.acc-trigger[aria-expanded="true"] .acc-arrow{border-color:var(--ac);background:rgba(200,168,130,.12)}
+.acc-trigger[aria-expanded="true"] .acc-arrow svg{transform:rotate(90deg);fill:var(--ac)}
+
+.acc-body{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.acc-body.open{max-height:3000px}
+.acc-inner{padding:.2rem 0 1.4rem 1.7rem}
+.acc-inner p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:2;margin-bottom:.9rem}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner h4{font-size:.72rem;letter-spacing:.18em;color:rgba(255,255,255,.35);margin:1.2rem 0 .4rem;font-weight:400}
+.acc-inner ul{list-style:none;margin-bottom:.9rem}
+.acc-inner ul li{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.9;padding-left:1.1rem;position:relative;margin-bottom:.2rem}
+.acc-inner ul li::before{content:'–';position:absolute;left:0;color:var(--ac)}
+.acc-inner strong{color:rgba(255,255,255,.82);font-weight:400}
+.acc-inner .price-block{margin-top:1.2rem;padding:.9rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.acc-inner .price-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--wh);display:block;margin-bottom:.2rem}
+.acc-inner .price-note{font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:.08em;line-height:1.7}
+.acc-inner .tag-rec{display:inline-block;font-size:.55rem;letter-spacing:.2em;color:var(--ac);border:1px solid rgba(200,168,130,.4);padding:.2rem .7rem;margin-bottom:.8rem}
+
+/* contact */
+.contact-block{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}
+.contact-block p{font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:1.2rem;letter-spacing:.08em}
+.contact-btns{display:flex;flex-direction:column;gap:.8rem;align-items:center}
+.btn-mail{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;border:1px solid rgba(255,255,255,.3);color:var(--wh);font-size:.72rem;letter-spacing:.14em;width:100%;max-width:320px;justify-content:center}
+.btn-insta{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-size:.68rem;letter-spacing:.18em;width:100%;max-width:320px;justify-content:center}
+
+footer{padding:1.5rem 1.4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:.5rem;margin-top:2rem}
 .f-logo{font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.22em;color:rgba(255,255,255,.25)}
 .f-copy{font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.15)}
-</style></head>
+</style>
+</head>
 <body>
-<nav><a class="nav-logo" href="#top">TOMOKI</a></nav>
-<section class="hero" id="top">
-  <p class="hero-eye">Creative Partner &nbsp;/&nbsp; AI Mentor</p>
-  <h1 class="hero-name">Tomo<em>ki</em></h1>
-  <p class="hero-tag">&#12300;&#20316;&#12387;&#12390;&#32066;&#12431;&#12426;&#12301;&#12398;&#12289;&#12381;&#12398;&#20808;&#12408;&#12290;<br>&#26368;&#26032;AI&#12392;&#12487;&#12470;&#12452;&#12531;&#12391;&#12289;&#12354;&#12394;&#12383;&#12398;&#12300;&#12391;&#12365;&#12427;&#12301;&#12434;&#12450;&#12483;&#12503;&#12487;&#12540;&#12488;&#12377;&#12427;&#12290;</p>
-  <div class="hero-btns">
-    <a class="btn-p" href="#flagship">&#12469;&#12540;&#12499;&#12473;&#12434;&#35211;&#12427;</a>
-    <a class="btn-o" href="#contact">&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;</a>
+
+<nav>
+  <a class="nav-logo" href="#">TOMOKI</a>
+</nav>
+
+<div class="page">
+
+  <div class="hero-block">
+    <p class="hero-eye">TOMOKI — Services &amp; Works</p>
+    <h1 class="hero-catch">選ばれるかどうかは、<br><em>発信</em>で決まる。</h1>
+    <p class="hero-sub">スキルは、未来への投資。<br>SNSとAIで価値を高める。</p>
+    <p class="hero-hint">をタップすると、詳しい内容が開きます。</p>
   </div>
-</section>
-<section id="about">
-  <p class="lbl">About</p>
-  <h2 class="ttl">&#12487;&#12470;&#12452;&#12531;&#12398;&#21147;&#12391;<br>&#33258;&#36305;&#12391;&#12365;&#12427;&#21147;&#12434;&#32946;&#12416;</h2>
-  <p>&#12452;&#12531;&#12473;&#12479;&#36939;&#29992;&#12420;&#24191;&#21578;&#12398;&#26368;&#26032;&#25163;&#27861;&#12363;&#12425;AI&#12484;&#12540;&#12523;&#12434;&#27963;&#29992;&#12375;&#12383;&#26368;&#20808;&#31295;&#12398;&#21046;&#20316;&#12414;&#12391;&#23550;&#24540;&#12290;&#21333;&#12394;&#12427;&#21046;&#20316;&#20195;&#34892;&#12395;&#12392;&#12393;&#12414;&#12425;&#12378;&#12289;&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#33258;&#36067;&#12364;&#12487;&#12472;&#12479;&#12523;&#12539;AI&#12434;&#20351;&#12356;&#12053;&#12394;&#12379;&#12427;&#12424;&#12358;&#12395;&#12394;&#12427;&#12383;&#12417;&#12398;&#12522;&#12473;&#12461;&#12522;&#12531;&#12464;&#25903;&#25588;&#12418;&#34892;&#12387;&#12390;&#12356;&#12414;&#12377;&#12290;</p>
-  <p>&#12300;&#12394;&#12435;&#12392;&#12394;&#12367;&#12362;&#12375;&#12419;&#12428;&#12395;&#12375;&#12390;&#12411;&#12375;&#12356;&#12301;&#12391;&#12399;&#12394;&#12367;&#12289;&#30446;&#27161;&#12363;&#12425;&#36870;&#31639;&#12375;&#12390;&#36027;&#29992;&#23550;&#21177;&#26524;&#12398;&#39640;&#12356;&#26045;&#31574;&#12434;&#19968;&#32210;&#12395;&#32771;&#12360;&#12414;&#12377;&#12290;&#23500;&#23665;&#30476;&#22312;&#20303;&#12391;&#12522;&#12450;&#12523;&#12394;&#23550;&#38754;&#12469;&#12509;&#12540;&#12488;&#12418;&#21487;&#33021;&#12290;<a href="https://www.instagram.com/tomo.pickleball/" target="_blank" rel="noopener">@tomo.pickleball</a> &#12398;DM&#12363;&#12425;&#12418;&#12362;&#27671;&#36731;&#12395;&#12393;&#12358;&#12382;&#12290;</p>
-</section>
-<section id="flagship">
-  <p class="lbl">Flagship Service</p>
-  <h2 class="ttl">&#12487;&#12472;&#12479;&#12523;&#12469;&#12509;&#12540;&#12488;<br><span class="ttl-sub">&#12522;&#12473;&#12461;&#12522;&#12531;&#12464;&#12539;&#12503;&#12525;&#12464;&#12521;&#12512;</span></h2>
-  <div class="flag-badge">NEW &#8212; RECOMMENDED</div>
-  <p class="flag-sub">&#26410;&#26469;&#12398;&#33258;&#20998;&#12408;&#12398;&#25295;&#36039;&#12290;AI&#12392;&#12487;&#12470;&#12452;&#12531;&#12434;&#21473;&#26041;&#12395;&#12388;&#12369;&#12289;&#33258;&#20998;&#12391;&#12300;&#33258;&#36305;&#12301;&#12391;&#12365;&#12427;&#21147;&#12434;&#12290;</p>
-  <div class="flag-body">
-    <div class="flag-item"><strong>&#24418;&#24335;</strong>&#12288;&#26376;2&#22238;&#65288;1&#22238;2&#26178;&#38291;&#31243;&#24230;&#65289;&#12398;&#12510;&#12531;&#12484;&#12540;&#12510;&#12531;&#12539;&#12475;&#12483;&#12471;&#12519;&#12531;</div>
-    <div class="flag-item"><strong>&#22580;&#25152;</strong>&#12288;&#12458;&#12531;&#12521;&#12452;&#12531;&#12513;&#12452;&#12531;&#65288;&#23500;&#23665;&#12539;&#30707;&#24029;&#30476;&#20869;&#12399;&#23550;&#38754;&#30456;&#35527;&#12418;&#21487;&#65289;</div>
-    <div class="flag-item"><strong>&#20869;&#23481;</strong>&#12288;AI&#12484;&#12540;&#12523;&#27963;&#29992;&#27861; / &#12487;&#12470;&#12452;&#12531;&#25805;&#20316; / SNS&#36939;&#29992;&#25126;&#30053; etc.</div>
+
+  <!-- 自己紹介 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      自己紹介
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>はじめまして、久世智貴です。富山を拠点に、Web制作・Instagram運用サポート・企業の広告画像制作、そしてCanvaやAffinityといったデザインツールの使い方やデザインの基礎支援まで、幅広く対応しています。近年はAI画像生成やAIエージェントといった新しい技術も、日々の実務に取り入れています。</p>
+        <p>経歴は少し異色です。もともとは介護士として働いていました。「デジタルスキルで仕事の幅を広げたい」——その思いからリスキリングを始め、2年前に独立。未経験からゼロで築いた基礎は、今、確かな土台になっています。</p>
+        <p>AIの進化により、かつて専門職の領域だったスキルも、誰でも扱える時代になりました。だからこそ大切なのは、「何を作れるか」ではなく、「何を、誰に、どう届けるか」。見せ方ひとつで、お店や人の印象は大きく変わります。</p>
+        <p>お店の魅力をもっと届けたい方、発信の軸を整えたい方、パソコンの基礎から始めたい方、デザインやさまざまなツールの使い方を学びたい方、AIを仕事に活かしたい方、そして、AI時代のデザインを一緒に考えたい方。ぜひお気軽にご相談ください。</p>
+        <p>また、1年半ほど前からピックルボール探究家としても活動中です。仕事の話だけでなく、そんな話もできたら嬉しいです。</p>
+      </div>
+    </div>
   </div>
-  <div class="flag-feat">
-    <p class="flag-feat-ttl">PROGRAM FEATURES</p>
-    <p class="flag-feat-item">&#27770;&#12414;&#12387;&#12383;&#12510;&#12491;&#12517;&#12450;&#12523;&#12398;&#12394;&#12356;&#12289;&#12501;&#12523;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;&#12539;&#12503;&#12525;&#12464;&#12521;&#12512;</p>
-    <p class="flag-feat-item">&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12398;&#35506;&#39064;&#12395;&#21512;&#12431;&#12379;&#12390;AI&#12484;&#12540;&#12523;&#27963;&#29992;&#27861;&#12363;&#12425;&#12487;&#12470;&#12452;&#12531;&#25805;&#20316;&#12414;&#12391;&#12524;&#12463;&#12481;&#12515;&#12540;</p>
-    <p class="flag-feat-item">&#12300;YouTube&#31282;&#23398;&#12301;&#12391;&#12399;&#21040;&#36798;&#12391;&#12365;&#12394;&#12356;&#12289;&#23455;&#21153;&#12395;&#30452;&#32080;&#12375;&#12383;&#12300;&#33258;&#36305;&#21147;&#12301;&#12398;&#29376;&#24471;</p>
+
+  <div class="sec-label">【サービス一覧】</div>
+
+  <!-- インスタ初期設計 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      インスタ初期設計・運用サポート
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>これからインスタをはじめたい人。<br>もうやってるけど、なかなか伸びなくてモヤモヤしている人。</p>
+        <p>そんな方に、いちばん最初の設計を一緒に考えるコンサルです。<br>インスタって、だれでもすぐにはじめられますよね。</p>
+        <p>スマホひとつあれば、今日から発信できる。<br>手軽だからこそ、「伸びない」で止まってしまう人もすごく多いんです。</p>
+        <p>おもしろいのは ─<br>リアルの世界でどれだけ有名でも、力のある人でも、インスタの世界に入ると、ぜんぜん見てもらえないことがあります。</p>
+        <p>反対に、インスタのしくみをちゃんと理解して発信するだけで、思っていた以上にフォロワーが増えたり、お客さんが集まったり、その人そのもののイメージをぐっと引き上げてくれたりします。</p>
+        <p>だから、最初の設計がすごく大切。</p>
+        <ul>
+          <li>どんな世界観で発信したいか</li>
+          <li>どんなテーマを軸に置くか</li>
+          <li>どんなデザインで見せていくか</li>
+        </ul>
+        <p>このあたりを、じっくりヒアリングします。</p>
+        <p>最終的には、自分ひとりで続けられる状態を目指します。<br>「時間がまったく取れない」「投稿を作るのはむずかしい」そんな方には、投稿制作そのものをお手伝いすることもできます。</p>
+        <h4>こんな方におすすめ</h4>
+        <p>インスタグラムで集客や、自分のブランドづくりを考えている方。</p>
+        <div class="price-block">
+          <span class="price-num">月額 ¥33,000〜</span>
+          <span class="price-note">（税込）詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="flag-price-area">
-    <div class="flag-price">&#165;33,000 &#12316; &#165;55,000</div>
-    <div class="flag-price-sub">/ &#26376;&#39069;&#65288;&#35201;&#30456;&#35527;&#65289;</div>
+
+  <!-- Webサイト制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      Webサイト（ホームページ）制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>インターネット上でしっかり伝わるWebサイトを作ります。</p>
+        <h4>こんなサイトが作れます</h4>
+        <ul>
+          <li><strong>作品集・自己紹介（ポートフォリオ）：</strong>自分の特技や、これまでの実績をまとめるサイト</li>
+          <li><strong>宣伝用特設ページ（LP）：</strong>売り出したいサービスやイベントを、1つのページで魅力的にアピールするサイト</li>
+          <li><strong>お店や会社の公式ホームページ：</strong>お店の情報などを載せる、しっかりとしたサイト</li>
+        </ul>
+        <h4>嬉しい基本セット</h4>
+        <ul>
+          <li><strong>スマホ対応：</strong>スマホから見ても、文字や写真が綺麗に表示されるように作ります。</li>
+          <li><strong>検索対策（SEO）：</strong>Googleなどで検索されたときに、見つけてもらいやすくする裏側の設定も行います。</li>
+          <li><strong>更新レクチャーつき：</strong>完成したあと、お知らせなどを「自分で書き換える方法」を丁寧にお教えします！</li>
+        </ul>
+        <h4>こんな人におすすめです！</h4>
+        <ul>
+          <li>24時間いつでも働いてくれる、ネット上の「名刺」が欲しい</li>
+          <li>公式のサイトを作って、お客さんに「ちゃんとしたお店・人だな」と安心してもらいたい</li>
+          <li>自分のやっているサービスを、もっとたくさんの人に知ってほしい</li>
+        </ul>
+        <div class="price-block">
+          <span class="price-num">¥55,000〜</span>
+          <span class="price-note">（税込）制作費　詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
-<section id="services">
-  <p class="lbl">Services</p>
-  <h2 class="ttl">&#21046;&#20316;&#12469;&#12540;&#12499;&#12473;</h2>
-  <p class="svc-note">&#20840;&#12469;&#12540;&#12499;&#12473;&#12289;&#12498;&#12450;&#12522;&#12531;&#12464;&#12539;&#12487;&#12451;&#12524;&#12463;&#12471;&#12519;&#12531;&#36027;&#36796;&#12415;&#12398;&#20385;&#26684;&#12391;&#12377;&#12290;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#12395;&#12390;&#12372;&#30456;&#35527;&#12367;&#12384;&#12373;&#12356;&#12290;</p>
-  <div class="svc-grid">
-    <div class="svc-card"><span class="svc-num">01</span><span class="svc-tag">DESIGN</span><h3 class="svc-ttl">&#12481;&#12521;&#12471;&#21046;&#20316;&#12487;&#12470;&#12452;&#12531;</h3><p class="svc-desc">&#12479;&#12540;&#12466;&#12483;&#12488;&#12395;&#21050;&#12373;&#12427;&#12499;&#12472;&#12517;&#12450;&#12523;&#12392;&#12513;&#12483;&#12475;&#12540;&#12472;&#12391;&#12289;&#30446;&#30340;&#12434;&#26524;&#12383;&#12377;&#12481;&#12521;&#12471;&#12434;&#12487;&#12470;&#12452;&#12531;&#12375;&#12414;&#12377;&#12290;</p><div class="svc-price">&#165;18,000&#12316;</div><div class="svc-sub">&#21046;&#20316;&#36027;&#12539;&#12487;&#12451;&#12524;&#12463;&#12471;&#12519;&#12531;&#36027;&#65288;&#165;3,000&#12316;&#65289;&#36796;&#12415; / 1&#26519;</div></div>
-    <div class="svc-card"><span class="svc-num">02</span><span class="svc-tag">DESIGN</span><h3 class="svc-ttl">&#21517;&#21531;&#12487;&#12470;&#12452;&#12531;</h3><p class="svc-desc">&#21021;&#23550;&#38754;&#12398;&#21069;&#35937;&#12434;&#27770;&#12417;&#12427;&#21517;&#21531;&#12434;&#12289;&#19968;&#26519;&#12363;&#12425;&#20869;&#23481;&#12395;&#12487;&#12470;&#12452;&#12531;&#12375;&#12414;&#12377;&#12290;</p><div class="svc-price">&#165;15,000&#12316;</div><div class="svc-sub">&#21046;&#20316;&#36027;&#12539;&#12487;&#12451;&#12524;&#12463;&#12471;&#12519;&#12531;&#36027;&#65288;&#165;3,000&#12316;&#65289;&#36796;&#12415; / 1&#12487;&#12470;&#12452;&#12531;</div></div>
-    <div class="svc-card"><span class="svc-num">03</span><span class="svc-tag">SNS</span><h3 class="svc-ttl">&#12452;&#12531;&#12473;&#12479;&#25295;&#31295;&#21046;&#20316;</h3><p class="svc-desc">&#12501;&#12451;&#12540;&#12489;&#12398;&#26368;&#26032;&#27969;&#34892;&#12395;&#21512;&#12431;&#12379;&#12383;&#25295;&#31295;&#12487;&#12470;&#12452;&#12531;&#12434;&#21046;&#20316;&#12375;&#12414;&#12377;&#12290;</p><div class="svc-price">&#165;12,000&#12316;</div><div class="svc-sub">&#21046;&#20316;&#36027; / 1&#12363;&#26376;</div></div>
-    <div class="svc-card"><span class="svc-num">04</span><span class="svc-tag">SNS</span><h3 class="svc-ttl">Instagram &#36939;&#29992;&#20195;&#34892;</h3><p class="svc-desc">&#32047;&#32396;&#30340;&#12394;&#25295;&#31295;&#12363;&#12425;&#25126;&#30053;&#30340;&#12394;&#36939;&#29992;&#12414;&#12391;&#12289;&#12501;&#12457;&#12525;&#12527;&#12540;&#29554;&#24471;&#12539;&#35469;&#30693;&#25324;&#22823;&#12434;&#12469;&#12509;&#12540;&#12488;&#12290;</p><div class="svc-price">&#165;33,000&#12316;</div><div class="svc-sub">&#35201;&#30456;&#35527; / &#20869;&#23481;&#12395;&#12424;&#12426;&#22793;&#21205;</div></div>
-    <div class="svc-card"><span class="svc-num">05</span><span class="svc-tag">WEB</span><h3 class="svc-ttl">WEB&#12469;&#12452;&#12488;&#21046;&#20316;</h3><p class="svc-desc">&#38598;&#23458;&#12363;&#12425;&#25104;&#26524;&#12395;&#32080;&#12403;&#12388;&#12367;&#35373;&#35336;&#12391;&#12469;&#12452;&#12488;&#12434;&#21046;&#20316;&#12375;&#12414;&#12377;&#12290;</p><div class="svc-price">&#165;58,000&#12316;</div><div class="svc-sub">&#21046;&#20316;&#36027;&#12539;&#12487;&#12451;&#12524;&#12463;&#12471;&#12519;&#12531;&#36027;&#65288;&#165;3,000&#12316;&#65289;&#36796;&#12415; / &#35201;&#30456;&#35527;</div></div>
-    <div class="svc-card"><span class="svc-num">06</span><span class="svc-tag">ADS</span><h3 class="svc-ttl">SNS&#24191;&#21578;&#36939;&#29992;&#20195;&#34892;</h3><p class="svc-desc">Instagram&#12539;Facebook&#12394;&#12393;&#20027;&#35201;SNS&#24191;&#21578;&#12398;&#25126;&#30053;&#30340;&#12394;&#36939;&#29992;&#12434;&#20195;&#34892;&#12375;&#12414;&#12377;&#12290;</p><div class="svc-price">&#35201;&#12362;&#35211;&#31296;&#12418;&#12426;</div><div class="svc-sub">&#36939;&#29992;&#36027;&#29992;&#12399;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#12395;&#12390;&#12372;&#30456;&#35527;&#12367;&#12384;&#12373;&#12356;</div></div>
+
+  <!-- デザインスキル基礎レッスン -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      デザインスキル基礎レッスン
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Canvaなどを使ってみたけれど、素人っぽさが抜けずにモヤモヤしている方。そんな方に向けた、デザインの「基礎」からしっかり学べる伴走型のレッスンです。</p>
+        <p>今は便利なツールがたくさんあり、誰でもカンタンにきれいなテンプレートが使える時代ですよね。手軽だからこそ、「自分流」でやってみて「なんだか違う」と手が止まってしまう人もすごく多いんです。</p>
+        <p>おもしろいのは ─<br>デザインは「生まれつきのセンス」だと思われがちですが、実は違います。情報の優先順位や、文字の揃え方など、ちょっとした「基本ルール」を知るだけで、見違えるようにプロっぽく、説得力のある見え方に変わるんです。</p>
+        <p>私自身、デザインを本格的に始めてからの歴はまだ2年ほど。だからこそ、「デザインが苦手」という方のつまずきやすいポイントが痛いほどわかります。</p>
+        <h4>レッスンの内容</h4>
+        <ul>
+          <li>Canvaの基礎から応用まで（ご希望の方には、より高度なツール「Affinity」もレクチャー可能です）</li>
+          <li>SNS投稿、チラシ、名刺、プレゼン資料などの実践的なデザイン制作</li>
+          <li>周りを気にせず質問できる、マンツーマンのオンラインレッスン</li>
+          <li>ご自身で制作したデザインの丁寧な添削（フィードバック）</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>毎回デザインを外注するのではなく、自分の力で納得のいくデザインを作れるようになりたい方。</p>
+        <div class="price-block">
+          <span class="price-num">3回券 ¥36,000 / 5回券 ¥55,000</span>
+          <span class="price-note">（税込）1回あたり2時間程を想定　詳細な金額はヒアリングの上、柔軟にご対応いたします</span>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
-<section id="contact">
-  <p class="lbl">Contact</p>
-  <h2 class="ttl">&#12362;&#27671;&#36731;&#12395;<br>&#12372;&#30456;&#35527;&#12434;</h2>
-  <p class="con-sub">&#12414;&#12378;&#12399;&#27671;&#36731;&#12395;&#12289;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#12395;&#12390;&#12054;&#30456;&#35527;&#12367;&#12384;&#12373;&#12356;&#12290;<br>&#12362;&#35211;&#31296;&#12418;&#12426;&#21512;&#12431;&#12379;&#12395;&#12418;&#12069;&#12358;&#12382;&#12290;</p>
-  <div class="con-btns">
-    <a class="con-mail" href="mailto:vitalitywork07@gmail.com">&#9993; vitalitywork07@gmail.com</a>
-    <a class="con-insta" href="https://www.instagram.com/tomo.pickleball/" target="_blank" rel="noopener">&#10023; Instagram DM</a>
+
+  <!-- リスキリングサポート -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      リスキリング サポート
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>デジタルスキル習得を伴走支援します。副業・転職・フリーランスを目指す方向けのサポートです。</p>
+        <ul>
+          <li>目標設定・学習ロードマップ作成</li>
+          <li>おすすめ学習教材・コースのご紹介</li>
+          <li>週次の進捗チェックイン</li>
+          <li>ポートフォリオ・実績作りのアドバイス</li>
+          <li>対象スキル：デザイン、SNS運用、Notion活用など</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>新しいスキルを身につけて収入の柱を増やしたい方</p>
+      </div>
+    </div>
   </div>
-  <p class="con-note">&#12500;&#12483;&#12463;&#12523;&#12508;&#12540;&#12523;&#12450;&#12459;&#12454;&#12531;&#12488; <a href="https://www.instagram.com/tomo.pickleball/" target="_blank" rel="noopener">@tomo.pickleball</a> &#12363;&#12425;&#12398;DM&#12418;&#21463;&#20184;&#20013;</p>
-</section>
+
+  <!-- バナー制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      バナー制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>SNSやWebサイト用のバナー・アイキャッチ画像を制作します。</p>
+        <ul>
+          <li>Instagram・Twitter・YouTube用サムネイル</li>
+          <li>ブログ記事のアイキャッチ</li>
+          <li>Web広告用バナー</li>
+          <li>CanvaやAdobe Expressを活用したスピード納品</li>
+          <li>修正対応あり</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>クリック率を上げたい方、目を引くビジュアルが欲しい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- チラシ・名刺制作 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      チラシ・名刺制作
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>イベント告知・サービス案内・地域配布用のチラシを制作します。</p>
+        <ul>
+          <li>A4・A5・B5など各サイズ対応</li>
+          <li>印刷用データ（高解像度PDF）の納品</li>
+          <li>SNS投稿用のデジタル版も対応</li>
+          <li>文章のライティングサポートつき</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>イベントを開催する方、地域でサービスを広めたい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ピックルボールレッスン -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      ピックルボールレッスン
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>不定期開催になります。</p>
+        <p>詳細はInstagramまたはメールでお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ピックルボール動画添削 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      ピックルボール動画添削
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>ピックルボールのプレー動画を送っていただき、フィードバックをお届けします。</p>
+        <ul>
+          <li>スマホで撮影した動画でOK</li>
+          <li>フォーム・ポジショニング・戦術を分析</li>
+          <li>コメント付き動画または文章でフィードバック</li>
+          <li>オンラインで完結（全国対応）</li>
+          <li>定期プランで継続的な上達をサポート</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>コーチに習えない環境でも上達したい方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 日記 × AI 資産構築 -->
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      <span class="acc-arrow"><svg viewBox="0 0 8 8"><polygon points="1,1 7,4 1,7"/></svg></span>
+      日記 × AI 資産構築
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>毎日の日記をAIを活用して資産に変えるサポートをします。</p>
+        <ul>
+          <li>Notionを使った日記テンプレートの設計</li>
+          <li>AIで日記から気づき・アイデアを抽出する仕組み</li>
+          <li>ブログ・SNS投稿コンテンツへの転換方法</li>
+          <li>「書けない」を解決するプロンプト設計</li>
+          <li>日記を続けながら発信力を高める習慣化サポート</li>
+        </ul>
+        <h4>こんな方におすすめ</h4>
+        <p>日々の経験を発信・収益につなげたい方、アウトプットが苦手な方</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-block">
+    <p>お問い合わせ・ご相談はお気軽にどうぞ！<br>各サービスのご質問、組み合わせのご相談など、まずはお話しましょう。</p>
+    <div class="contact-btns">
+      <a class="btn-mail" href="mailto:vitalitywork07@gmail.com">✉ vitalitywork07@gmail.com</a>
+      <a class="btn-insta" href="https://www.instagram.com/tomo.pickleball/" target="_blank" rel="noopener">✦ Instagram @tomo.pickleball</a>
+    </div>
+  </div>
+
+</div>
+
 <footer>
   <span class="f-logo">TOMOKI</span>
-  <span class="f-copy">&#169; 2026 Tomoki. All rights reserved.</span>
+  <span class="f-copy">© 2026 Tomoki. All rights reserved.</span>
 </footer>
-</body></html>
+
+<script>
+function toggleAcc(btn) {
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!isOpen));
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
